@@ -6,6 +6,7 @@
 #include <QMessageBox>
 
 #include "personadialog.h"
+#include "persona.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Principal; }
@@ -26,8 +27,8 @@ private slots:
 
 private:
     Ui::Principal *ui;
-    const QString ARCHIVO = "agenda.csv";
-    enum Columna
+    const QString ARCHIVO = "agenda.csv"; //constante donde se guarda la información
+    enum Columna //permite enumerar datos (indices) con un nombre
     {
         NOMBRE, APELLIDO, TELEFONO, EMAIL
     };

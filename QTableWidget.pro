@@ -10,10 +10,12 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
+    persona.cpp \
     personadialog.cpp \
     principal.cpp
 
 HEADERS += \
+    persona.h \
     personadialog.h \
     principal.h
 
