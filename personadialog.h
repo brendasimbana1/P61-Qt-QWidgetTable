@@ -2,6 +2,8 @@
 #define PERSONADIALOG_H
 
 #include <QDialog>
+#include <QMessageBox>
+#include <ctype.h>
 #include "persona.h"
 
 namespace Ui {

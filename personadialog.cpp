@@ -40,7 +40,16 @@ void PersonaDialog::on_buttonBox_accepted()
     QString nombre =  ui->inNombre->text();
     QString apellido =  ui->inApellido->text();
     QString telefono =  ui->inTelefono->text();
+    if (!telefono.contains("123456789",Qt::CaseInsensitive)){
+        QMessageBox::warning(this, "Adventencia", "E l campo del telefono debe contener solo numeros");
+        return;
+    }
     QString email =  ui->inEmail->text();
+
+    if (nombre.isEmpty()|| apellido.isEmpty() || telefono.isEmpty() || email.isEmpty()){
+        QMessageBox::warning(this, "Adventencia", "Todos los campos deben estar llenos");
+        return;
+    }
     this->m_persona = new Persona(nombre, apellido, telefono, email);
     accept();
 }
