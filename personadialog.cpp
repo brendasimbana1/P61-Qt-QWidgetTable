@@ -35,23 +35,52 @@ QString PersonaDialog::email()
 
 void PersonaDialog::on_buttonBox_accepted()
 {
+    bool valid = false, validNom = true, validApe = true;
     /*REFACTORIZACIÓN: Se cambia el código para mejorar la funcionalidad dentro de el, no cambia sus funciones
     externas*/
     QString nombre =  ui->inNombre->text();
     QString apellido =  ui->inApellido->text();
     QString telefono =  ui->inTelefono->text();
-    /*if (!telefono.contains("1", Qt::CaseInsensitive)){
-        QMessageBox::warning(this, "Adventencia", "El campo del telefono debe contener solo numeros");
-        return;
-    }*/
     QString email =  ui->inEmail->text();
 
     if (nombre.isEmpty()|| apellido.isEmpty() || telefono.isEmpty() || email.isEmpty()){
         QMessageBox::warning(this, "Adventencia", "Todos los campos deben estar llenos");
         return;
     }
-    this->m_persona = new Persona(nombre, apellido, telefono, email);
-    accept();
+    for(int i = 0; i < nombre.length(); i++){
+            if(nombre[i].isDigit()){
+                validNom = false;
+            }
+        }
+        if(validNom == false){
+            QMessageBox::warning(this, "Advertencia", "El campo de nombre, solo admite letras");
+            return;
+        }
+        for(int i = 0; i < apellido.length(); i++){
+            if(apellido[i].isDigit()){
+                validApe = false;
+            }
+        }
+        if(validApe == false){
+            QMessageBox::warning(this, "Advertencia", "El campo de apellido, solo admite letras");
+            return;
+        }
+
+        for(int i = 0; i < email.length(); i++){
+            if(email[i] == '@'){
+                for(int j = i; j < email.length(); j++){
+                    if(email[j] == '.'){
+                        valid = true;
+                    }
+                }
+            }
+        }
+        if(valid == false){
+            QMessageBox::warning(this, "Advertencia", "Ingrese un formato de correo valido..!");
+            return;
+        }
+        this->m_persona = new Persona(nombre, apellido, telefono, email);
+        accept();
 }
 
 
